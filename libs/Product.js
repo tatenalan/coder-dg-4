@@ -40,7 +40,7 @@ class Product {
     update(id, product) {
         const index = this.list.findIndex((product) => product.id == id);
         console.log(index);
-        if (index > 0) {
+        if (index > -1) {
             product.id = this.list[index].id
             this.list[index] = product;
             return product;
@@ -50,8 +50,8 @@ class Product {
     }
 
     delete(id) {
-        let index = this.list.findIndex((product) => product.id == id);
-        if (index) {    
+        const index = this.list.findIndex((product) => product.id == id);
+        if (index > -1) {    
             this.list.splice(index, 1);
             return 'Producto eliminado'
         } else {
