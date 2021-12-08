@@ -3,7 +3,7 @@ const Product = require('./libs/Product')
 const { Router } = express;
 const app = express();
 const router = Router();
-const PORT = process.env.PORT || 80080
+const PORT = process.env.PORT || 8080
 // con __dirname traemos la ruta absoluta
 // instanciamos el objeto y le pasamos un filename segun indica el constructor de la clase
 const product = new Product(__dirname + "/data/products.json")
@@ -20,12 +20,12 @@ app.use("/api/products", router)
 app.use(express.static('./views'))
 // escuchamos el puerto
 
-app.on('error', function (e) {
-    console.log('Error al conectar con el servidor', error);  
+const server = app.listen(PORT, async () => {
+    console.log(`Servidor Corriendo en el puerto: ${server.address().port}`)
 });
 
-app.listen(PORT, () => {
-    console.log(`Server on`); 
+server.on('error', function (e) {
+    console.log('Error al conectar con el servidor', e);  
 });
         
 
